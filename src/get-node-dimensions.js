@@ -6,7 +6,7 @@ export default function getNodeDimensions(node, options = {}) {
   let width, height, margin
 
   // determine if we need to clone the element to get proper dimensions or not
-  if (!rect.width || !rect.height || options.clone) {
+  if (((!rect.width || !rect.height) && !options.noCloneOnZeroDimension) || options.clone) {
     const cloneDimensions = getCloneDimensions(node, options)
     rect = cloneDimensions.rect
     margin = cloneDimensions.margin
